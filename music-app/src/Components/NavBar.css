@@ -1,0 +1,95 @@
+/* Navbar container styles */
+nav {
+    background: black; /* Dark background color */
+    padding: 10px 20px;   /* Padding */
+    display: flex;
+    justify-content: space-between; /* Distribute space between the sections */
+    align-items: center; /* Vertically align items */
+}
+
+/* Unordered list (for navigation links) styles */
+ul {
+    display: flex;
+    list-style: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+/* Left section styles */
+.left {
+    display: flex;
+    align-items: center;
+}
+
+/* Right section styles */
+.right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;  /* Push the right section to the right */
+}
+
+/* Search bar styles */
+.searchbar {
+    display: flex;
+    align-items: center;
+    background-color: #1b2430;
+    border-radius: 30px;
+    padding: 6px 6px;
+}
+
+.searchbar li {
+    position: relative; /* Positioning context for the icon */
+}
+
+/* Input field inside search bar */
+.searchbar input {
+    background: #1b2430;
+    color: #fff;
+    border: none;
+    padding: 5px 40px 5px 10px; 
+    border-radius: 5px;
+    outline: none;
+    width: 250px; 
+    
+}
+
+.searchbar input::placeholder {
+    color: #a3a3a3;
+}
+
+/* Search icon styles */
+.searchbar .search-icon {
+    position: absolute;
+    right: 5px;
+    justify-content: center; /* Position the icon on the right inside the input */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 18px;
+   
+}
+
+/* List item (for links) styles */
+li {
+    margin: 0 15px; /* Space between the list items */
+}
+
+/* Anchor (link) styles */
+button {
+    color: #fff;
+    background-color: black;
+    text-decoration: none; /* Remove underlines */
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+/* Hover effect for anchor links */
+button:hover {
+    color: #f39c12; /* Change color on hover */
+}
+
+/* Spacing between icon and text */
+button svg {
+    margin-right: 8px;
+}

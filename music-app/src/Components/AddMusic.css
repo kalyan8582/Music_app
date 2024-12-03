@@ -1,0 +1,101 @@
+/* AddMusic.css */
+
+/* General Container Styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Centering the Form Container */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form Heading */
+h6 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input and Select Fields */
+input.form-control,
+select.form-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* File Input */
+input[type="file"] {
+  padding: 5px;
+}
+
+/* Checkbox Label */
+.form-check-label {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Submit Button */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Form Label */
+.form-label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+/* Spacing for Rows */
+.row {
+  margin-bottom: 15px;
+}
+
+/* Checkbox Alignment */
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  input.form-control,
+  select.form-select {
+    font-size: 12px;
+  }
+
+  .btn-primary {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
