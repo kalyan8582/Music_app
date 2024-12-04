@@ -17,13 +17,16 @@ public class MusicController {
     private MusicService musicService;
 
     @PostMapping("/AddMusic")
-    public ResponseEntity<?> addMusic(@RequestBody Music music) {
-        //System.out.println(Music);
+    public ResponseEntity<?> addMusic(
+            @RequestPart Music music,
+            @RequestPart MultipartFile image) {
         try {
-            Music savedMusic = musicService.addMusic(music);
+            Music savedMusic = musicService.addMusic(music, image);
             return new ResponseEntity<>(savedMusic, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
 }
+
