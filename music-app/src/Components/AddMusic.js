@@ -10,19 +10,33 @@ const AddMusic = () => {
     genre: "",
   });
 
+  const [image, setImage] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setMusic({ ...music, [name]: value });
   };
 
-  const submitHandler = async (event) => {
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+    // setProduct({...product, image: e.target.files[0]})
+  };
+  
+  const submitHandler = (event) => {
     event.preventDefault();
-
-    // Send music details directly as JSON
+    const formData = new FormData();
+  
+    // Use 'image' as the key to match the backend's expectations
+    formData.append("image", image);
+    formData.append(
+      "music",
+      new Blob([JSON.stringify(music)], { type: "application/json" })
+    );
+  
     axios
-      .post("http://localhost:8080/api/AddMusic", music, {
+      .post("http://localhost:8080/api/AddMusic", formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
@@ -30,10 +44,11 @@ const AddMusic = () => {
         alert("Music added successfully");
       })
       .catch((error) => {
-        console.error("Error adding music:", error.response?.data || error.message);
-        alert("Error adding music");
+        console.error("Error adding Music:", error);
+        alert("Error adding Music");
       });
   };
+  
 
   return (
     <div className="container">
@@ -109,6 +124,16 @@ const AddMusic = () => {
               <option value="Classical">Classical</option>
             </select>
           </div>
+          <div className="col-md-4">
+          <label className="form-label">
+            <h6>Image</h6>
+          </label>
+          <input
+            className="form-control"
+            type="file"
+            onChange={handleImageChange}
+          />
+        </div>
           <div className="col-12">
             <button type="submit" className="btn btn-primary">
               Submit
