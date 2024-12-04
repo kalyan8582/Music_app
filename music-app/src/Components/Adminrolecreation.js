@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [formData, setFormData] = useState({ username: "", password: "", repassword: "" });
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const navigate = useNavigate();
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -32,7 +30,7 @@ const Signup = () => {
                 password: "",
                 repassword: "",
             });
-            navigate("/success")
+            // Redirect to another page or display success message
         } catch (error) {
             setLoading(false);
             setErrorMessage(error.response?.data?.message || "Signup failed. Please try again.");

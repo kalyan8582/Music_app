@@ -11,6 +11,7 @@ const AddMusic = () => {
   });
 
   const [image, setImage] = useState(null);
+  const [audio, setAudio] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,13 +22,20 @@ const AddMusic = () => {
     setImage(e.target.files[0]);
     // setProduct({...product, image: e.target.files[0]})
   };
+  const handleAudioChange = (e) => {
+    setAudio(e.target.files[0]);
+    // setProduct({...product, image: e.target.files[0]})
+  };
   
   const submitHandler = (event) => {
     event.preventDefault();
     const formData = new FormData();
   
-    // Use 'image' as the key to match the backend's expectations
+    // Append image and audio files
     formData.append("image", image);
+    formData.append("audio", audio);
+  
+    // Append the music JSON object
     formData.append(
       "music",
       new Blob([JSON.stringify(music)], { type: "application/json" })
@@ -48,6 +56,7 @@ const AddMusic = () => {
         alert("Error adding Music");
       });
   };
+  
   
 
   return (
@@ -132,6 +141,16 @@ const AddMusic = () => {
             className="form-control"
             type="file"
             onChange={handleImageChange}
+          />
+        </div>
+        <div className="col-md-4">
+          <label className="form-label">
+            <h6>Audio</h6>
+          </label>
+          <input
+            className="form-control"
+            type="file"
+            onChange={handleAudioChange}
           />
         </div>
           <div className="col-12">

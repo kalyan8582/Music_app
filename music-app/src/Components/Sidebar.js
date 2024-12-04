@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 function SideBar({ toggled, setToggled }) {
     const navigate = useNavigate();
+    const userRole = localStorage.getItem("userRole"); // Get user role from localStorage
 
-    const handleMenuClick = () => {
+    const handleMenuClick = (path) => {
         setToggled(false); 
-        navigate("/AddMusic"); 
+        navigate(path); 
     };
 
     return (
@@ -16,11 +17,27 @@ function SideBar({ toggled, setToggled }) {
                 onBackdropClick={() => setToggled(false)} 
                 toggled={toggled} 
                 breakPoint="always"
-                backgroundColor="#0f8f0f"
-                color="white"
+                backgroundColor="white"  // Set background color to white
+                color="black"             // Set text color to black (adjust this if needed)
             >
+
                 <Menu>
-                    <MenuItem onClick={handleMenuClick}>Add Music</MenuItem>
+                    <div class = "menu-container">
+                    {userRole === "admin" && (
+                        <>
+                            <MenuItem onClick={() => handleMenuClick("/AddMusic")}>Add Music</MenuItem>
+                            <MenuItem>Create Profile</MenuItem>
+                        </>
+                    )}
+
+                    {/* User-specific menu items */}
+                    {userRole === "user" && (
+                        <>
+                            <MenuItem onClick={() => handleMenuClick("/UserProfile")}>Profile</MenuItem>
+                            <MenuItem onClick={() => handleMenuClick("/UserSettings")}>Settings</MenuItem>
+                        </>
+                    )}
+                </div>
                 </Menu>
             </Sidebar>
         </div>
