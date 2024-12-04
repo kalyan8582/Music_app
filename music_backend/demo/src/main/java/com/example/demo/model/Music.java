@@ -19,7 +19,6 @@ import lombok.Setter;
 @Document(collection = "music") 
 public class Music {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id; 
 
     private String title;
@@ -31,4 +30,8 @@ public class Music {
     private String imageType;
     
     private byte[] imageData;
+
+    private String audioName;
+    private String audioType;
+    private byte[] audioData;
 }

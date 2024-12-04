@@ -18,24 +18,28 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    // Login method now returns a ResponseEntity
+    
     public String Login(User user) {
         Optional<User> existingUser = userRepo.findByUsername(user.getUsername());
 
         if (existingUser.isPresent() && existingUser.get().getPassword().equals(user.getPassword())) {
-            // Login successful
-            return "Login successful";
+            
+            return existingUser.get().getRole();
         } else {
-            // Invalid credentials
+         
             return "Invalid username or password";
         }
     }
 
     public void registerUser(User user) {
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("user");
+        }
+        System.out.println("role is "+user.getRole());
         userRepo.findByUsername(user.getUsername()).ifPresent(existingUser -> {
             throw new RuntimeException("Username already exists");
         });
 
-        userRepo.save(user);  // Save the new user
+        userRepo.save(user);  
     }
 }

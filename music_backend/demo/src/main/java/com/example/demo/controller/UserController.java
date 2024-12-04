@@ -25,10 +25,11 @@ public class UserController {
         try {
             // Get the login response from service
             String response = userService.Login(user);
-            if (response.equals("Login successful")) {
-                return ResponseEntity.ok(response);
-            } else {
+            if (response.equals("Invalid username or password")) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+                
+            } else {
+                return ResponseEntity.ok(response);
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login failed: " + e.getMessage());
@@ -39,7 +40,7 @@ public class UserController {
     public ResponseEntity<String> register(@RequestBody User user) {
         try {
             userService.registerUser(user);
-            return new ResponseEntity<>("Sign Up successful", HttpStatus.CREATED);  // 201 status for successful creation
+            return new ResponseEntity<>("Sign Up successful", HttpStatus.CREATED);  
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Signup failed: " + e.getMessage());
         }

@@ -17,13 +17,16 @@ public class MusicService {
         this.repo = repo;
     }
 
-    public Music addMusic(Music music, MultipartFile imageFile) throws IOException {
+    public Music addMusic(Music music, MultipartFile imageFile, MultipartFile audioFile) throws IOException {
         // Set image details in the Music object
         music.setImageType(imageFile.getContentType());
         music.setImageData(imageFile.getBytes());
         music.setImageName(imageFile.getOriginalFilename());
 
-        // Save to the database
+        music.setAudioType(audioFile.getContentType());
+        music.setAudioData(audioFile.getBytes());
+        music.setAudioName(audioFile.getOriginalFilename());
+
         return repo.save(music);
     }
 }
