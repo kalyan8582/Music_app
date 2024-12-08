@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.*;
 import com.example.demo.model.Music;
 import com.example.demo.repository.MusicRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,14 @@ public class MusicService {
 
         return repo.save(music);
     }
+
+    public Music getMusicById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+    
+    public List<Music> getAllMusic() {
+        return repo.findAll();
+    }
+    
 }
 
