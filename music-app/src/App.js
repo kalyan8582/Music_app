@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import SideBar from "./Components/Sidebar";
 import AddMusic from "./Components/AddMusic"; // AddMusic component
 import Navbar from "./Components/Navbar"; // Default Navbar
@@ -18,7 +19,8 @@ function App() {
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             
             <Routes>
-                <Route path="/Home" element={<Home/> }/>
+                {/* <Route path="/Home" element={<Home/> }/> */}
+                <Route path="*" element={<Navigate to="/Home" />} />
                 <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/SignUp" element={<Signup />} />
                 <Route path="/Sidebar" element={<SideBar />} />
