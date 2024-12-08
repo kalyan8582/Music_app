@@ -10,6 +10,9 @@ function SideBar({ toggled, setToggled }) {
         setToggled(false); 
         navigate(path); 
     };
+    const handleProfilecreation=(path)=>{
+        navigate(path);
+    }
 
     return (
         <div className="Home-header">
@@ -17,16 +20,22 @@ function SideBar({ toggled, setToggled }) {
                 onBackdropClick={() => setToggled(false)} 
                 toggled={toggled} 
                 breakPoint="always"
-                backgroundColor="white"  // Set background color to white
-                color="black"             // Set text color to black (adjust this if needed)
+                backgroundColor="white"  
+                color="black"            
             >
 
-                <Menu>
+                <Menu style={{ backgroundColor: "lightblue" }}>
                     <div class = "menu-container">
-                    {userRole === "admin" && (
+                    {userRole === "admin"  && (
                         <>
                             <MenuItem onClick={() => handleMenuClick("/AddMusic")}>Add Music</MenuItem>
-                            <MenuItem>Create Profile</MenuItem>
+                            <MenuItem onClick={() => handleProfilecreation("/SignUp")}>Create Profile</MenuItem>
+                        </>
+                    )}
+                     {userRole === "developer"  && (
+                        <>
+                            <MenuItem onClick={() => handleMenuClick("/AddMusic")}>Add Music</MenuItem>
+                            
                         </>
                     )}
 

@@ -17,6 +17,7 @@ const Login = ({ setIsLoggedIn }) => {
         localStorage.setItem("userRole", response.data);
         setIsLoggedIn(true); // Set login state to true
         navigate("/NavBar"); // Redirect to the NavBar or home page
+        navigate("/Home"); 
       } else {
         setErrorMessage("Invalid username or password");
       }

@@ -3,11 +3,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-    const [formData, setFormData] = useState({ username: "", password: "", repassword: "" });
+    const userRole = localStorage.getItem("userRole");
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+        repassword: "",
+        role: "user", // Default role
+    });
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -31,8 +38,11 @@ const Signup = () => {
                 username: "",
                 password: "",
                 repassword: "",
+                role: "user",
             });
-            navigate("/success")
+            if(userRole!=="admin"){
+                navigate("/success");
+            }
         } catch (error) {
             setLoading(false);
             setErrorMessage(error.response?.data?.message || "Signup failed. Please try again.");
@@ -78,6 +88,28 @@ const Signup = () => {
                         style={{ width: "100%", padding: "8px" }}
                     />
                 </div>
+
+              
+                {userRole === "admin" && (
+                    <div style={{ marginBottom: "10px" }}>
+                        <label htmlFor="role" className="form-label">
+                            <h6>Role</h6>
+                        </label>
+                        <select
+                            className="form-select"
+                            value={formData.role}
+                            onChange={handleChange}
+                            name="role"
+                            id="role"
+                            required
+                            style={{ width: "100%", padding: "8px" }}
+                        >
+                            <option value="user">user</option>
+                            <option value="developer">developer</option>
+                        </select>
+                    </div>
+                )}
+
                 <button
                     type="submit"
                     disabled={loading}

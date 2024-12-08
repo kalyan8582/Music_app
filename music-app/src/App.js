@@ -7,6 +7,7 @@ import Signup from "./Components/SignUp";
 import Login from "./Components/Login";
 import ProtectedRoute from "./proctureRoute";
 import SuccessPage from "./Components/Successpageafterlogin";
+import Home from "./Components/Home";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,8 +16,9 @@ function App() {
         <Router>
             {/* Render Navbar with conditional props */}
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-
+            
             <Routes>
+                <Route path="/Home" element={<Home/> }/>
                 <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/SignUp" element={<Signup />} />
                 <Route path="/Sidebar" element={<SideBar />} />

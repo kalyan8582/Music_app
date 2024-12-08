@@ -32,19 +32,19 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const handleLogout = () => {
     localStorage.removeItem("userRole");
     setIsLoggedIn(false);
-    navigate("/Login"); // Redirect to home or login page after logout
+    navigate("/Login"); 
   };
 
   return (
     <div>
-      {/* Sidebar (toggle visibility based on `toggled` state) */}
+    
       <SideBar toggled={toggled} setToggled={setToggled} />
 
       <nav>
-        {/* Left side - Home Link */}
+      
         <ul className="left">
           <li>
-            {/* Button to Toggle Sidebar */}
+          
             <button onClick={handleToggleSidebar}>
               <BsReverseLayoutTextSidebarReverse />
             </button>
@@ -64,7 +64,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           </li>
         </ul>
 
-        {/* Right side - Conditional Rendering of Buttons */}
+     
         <ul className="right">
           {!isLoggedIn ? (
             <>
