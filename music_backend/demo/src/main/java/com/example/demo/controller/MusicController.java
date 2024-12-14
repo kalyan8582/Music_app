@@ -43,45 +43,45 @@ public ResponseEntity<List<Music>> getmusics() {
     return new ResponseEntity<>(musicService.getAllMusic(), HttpStatus.OK);
 }
 
-@GetMapping("/musics/{musicId}/")
-public ResponseEntity<byte[]> getMusicdetailsById(@PathVariable("musicId") int id) {
-    Music music = musicService.getMusicById(id);
-    if (music == null || music.getImageData() == null) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    }
+// @GetMapping("/musics/{musicId}/")
+// public ResponseEntity<byte[]> getMusicdetailsById(@PathVariable("musicId") int id) {
+//     Music music = musicService.getMusicById(id);
+//     if (music == null || music.getImageData() == null) {
+//         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//     }
 
-    byte[] image = music.getImageData();
-    MediaType mediaType;
-    try {
-        mediaType = MediaType.valueOf(music.getImageType());
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(null);
-    }
+//     byte[] image = music.getImageData();
+//     MediaType mediaType;
+//     try {
+//         mediaType = MediaType.valueOf(music.getImageType());
+//     } catch (IllegalArgumentException e) {
+//         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(null);
+//     }
 
-    return ResponseEntity.ok()
-            .contentType(mediaType)
-            .body(image);
-}
+//     return ResponseEntity.ok()
+//             .contentType(mediaType)
+//             .body(image);
+// }
 
-@GetMapping("/musics/{musicId}/audio")
-public ResponseEntity<byte[]> getAudioByMusicId(@PathVariable int musicId) {
-    Music music = musicService.getMusicById(musicId);
-    if (music == null || music.getAudioData() == null) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    }
+// @GetMapping("/musics/{musicId}/audio")
+// public ResponseEntity<byte[]> getAudioByMusicId(@PathVariable int musicId) {
+//     Music music = musicService.getMusicById(musicId);
+//     if (music == null || music.getAudioData() == null) {
+//         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//     }
 
-    byte[] audio = music.getAudioData();
-    MediaType mediaType;
-    try {
-        mediaType = MediaType.valueOf(music.getAudioType());
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(null);
-    }
+//     byte[] audio = music.getAudioData();
+//     MediaType mediaType;
+//     try {
+//         mediaType = MediaType.valueOf(music.getAudioType());
+//     } catch (IllegalArgumentException e) {
+//         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(null);
+//     }
 
-    return ResponseEntity.ok()
-            .contentType(mediaType)
-            .body(audio);
-}
+//     return ResponseEntity.ok()
+//             .contentType(mediaType)
+//             .body(audio);
+// }
 
     
 }

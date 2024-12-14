@@ -31,9 +31,10 @@ public class MusicService {
         return repo.save(music);
     }
 
-    public Music getMusicById(int id) {
-        return repo.findById(id).orElse(null);
-    }
+    // public Music getMusicById(int id) {
+    //     return repo.findById(id); 
+    // }
+    
     
     public List<Music> getAllMusic() {
         return repo.findAll();
