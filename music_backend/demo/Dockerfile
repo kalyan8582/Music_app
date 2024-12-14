@@ -1,14 +1,10 @@
-# Use a base Java image
-FROM openjdk:17-jdk-slim
 
-# Set the working directory in the container
-WORKDIR /app
+FROM maven:3.6.3-openjdk-17 AS build
+COPY . .
+RUN mvn clean package
 
-# Copy the JAR file
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the application port
+From openjdk:17.0.1-jdk-slim
+COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
+ENTRYPOINT [ "java","-jar","demo.jar" ]
 
-# Run the JAR file
-CMD ["java", "-jar", "app.jar"]
