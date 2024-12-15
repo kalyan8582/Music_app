@@ -10,7 +10,7 @@ const Login = ({ setIsLoggedIn }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/Login", formData);
+      const response = await axios.post("http://35.160.120.126:8080/api/Login", formData);
       
       if (response.data !== "Invalid username or password") {
         // Store the user role in localStorage
